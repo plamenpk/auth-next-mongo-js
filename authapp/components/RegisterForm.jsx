@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
@@ -48,7 +49,23 @@ const RegisterForm = () => {
       if (res.ok) {
         const form = e.target;
         form.reset();
-        router.push('/');
+        try {
+          const res = await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+          });
+
+          if (res.error) {
+            setError("Invalid Credentials");
+            return;
+          }
+
+          router.replace("dashboard");
+        } catch (error) {
+          console.log('singIn', error);
+        }
+       
       } else {
         console.log('User registration failed.');
       }
