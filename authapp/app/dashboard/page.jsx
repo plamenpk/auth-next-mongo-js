@@ -1,5 +1,7 @@
 import UserInfo from "@/components/UserInfo";
 
-export default function Dashboard() {
+const Dashboard = () => {
   return <UserInfo />;
 }
+
+export default Dashboard;

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function RegisterForm() {
+const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,7 +35,7 @@ export default function RegisterForm() {
         setError("User already exists.");
         return;
       }
-      
+
       // Register the user if they do not exist
       const res = await fetch('/api/register', {
         method: 'POST',
@@ -96,3 +96,5 @@ export default function RegisterForm() {
     </div>
   );
 }
+
+export default RegisterForm;

@@ -3,7 +3,7 @@
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
-export default function UserInfo() {
+const UserInfo = () => {
   const { data: session } = useSession();
 
   return (
@@ -25,3 +25,5 @@ export default function UserInfo() {
     </div>
   );
 }
+
+export default UserInfo;
